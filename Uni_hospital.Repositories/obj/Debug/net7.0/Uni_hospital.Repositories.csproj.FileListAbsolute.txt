@@ -1,0 +1,17 @@
+D:\Dev\Uni_hospital\Uni_hospital.Repositories\bin\Debug\net7.0\Uni_hospital.Repositories.deps.json
+D:\Dev\Uni_hospital\Uni_hospital.Repositories\bin\Debug\net7.0\Uni_hospital.Repositories.runtimeconfig.json
+D:\Dev\Uni_hospital\Uni_hospital.Repositories\bin\Debug\net7.0\Uni_hospital.Repositories.dll
+D:\Dev\Uni_hospital\Uni_hospital.Repositories\bin\Debug\net7.0\Uni_hospital.Repositories.pdb
+D:\Dev\Uni_hospital\Uni_hospital.Repositories\obj\Debug\net7.0\Uni_hospital.Repositories.csproj.AssemblyReference.cache
+D:\Dev\Uni_hospital\Uni_hospital.Repositories\obj\Debug\net7.0\Uni_hospital.Repositories.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dev\Uni_hospital\Uni_hospital.Repositories\obj\Debug\net7.0\Uni_hospital.Repositories.AssemblyInfoInputs.cache
+D:\Dev\Uni_hospital\Uni_hospital.Repositories\obj\Debug\net7.0\Uni_hospital.Repositories.AssemblyInfo.cs
+D:\Dev\Uni_hospital\Uni_hospital.Repositories\obj\Debug\net7.0\Uni_hospital.Repositories.csproj.CoreCompileInputs.cache
+D:\Dev\Uni_hospital\Uni_hospital.Repositories\obj\Debug\net7.0\Uni_hospital.Repositories.dll
+D:\Dev\Uni_hospital\Uni_hospital.Repositories\obj\Debug\net7.0\refint\Uni_hospital.Repositories.dll
+D:\Dev\Uni_hospital\Uni_hospital.Repositories\obj\Debug\net7.0\Uni_hospital.Repositories.pdb
+D:\Dev\Uni_hospital\Uni_hospital.Repositories\obj\Debug\net7.0\Uni_hospital.Repositories.genruntimeconfig.cache
+D:\Dev\Uni_hospital\Uni_hospital.Repositories\obj\Debug\net7.0\ref\Uni_hospital.Repositories.dll
+D:\Dev\Uni_hospital\Uni_hospital.Repositories\bin\Debug\net7.0\Uni_hospital.Models.dll
+D:\Dev\Uni_hospital\Uni_hospital.Repositories\bin\Debug\net7.0\Uni_hospital.Models.pdb
+D:\Dev\Uni_hospital\Uni_hospital.Repositories\obj\Debug\net7.0\Uni_hospital.Repositories.csproj.CopyComplete

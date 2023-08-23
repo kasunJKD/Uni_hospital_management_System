@@ -1,0 +1,12 @@
+D:\Dev\Uni_hospital\Uni_hospital.Services\bin\Debug\net7.0\Uni_hospital.Services.deps.json
+D:\Dev\Uni_hospital\Uni_hospital.Services\bin\Debug\net7.0\Uni_hospital.Services.dll
+D:\Dev\Uni_hospital\Uni_hospital.Services\bin\Debug\net7.0\Uni_hospital.Services.pdb
+D:\Dev\Uni_hospital\Uni_hospital.Services\obj\Debug\net7.0\Uni_hospital.Services.csproj.AssemblyReference.cache
+D:\Dev\Uni_hospital\Uni_hospital.Services\obj\Debug\net7.0\Uni_hospital.Services.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dev\Uni_hospital\Uni_hospital.Services\obj\Debug\net7.0\Uni_hospital.Services.AssemblyInfoInputs.cache
+D:\Dev\Uni_hospital\Uni_hospital.Services\obj\Debug\net7.0\Uni_hospital.Services.AssemblyInfo.cs
+D:\Dev\Uni_hospital\Uni_hospital.Services\obj\Debug\net7.0\Uni_hospital.Services.csproj.CoreCompileInputs.cache
+D:\Dev\Uni_hospital\Uni_hospital.Services\obj\Debug\net7.0\Uni_hospital.Services.dll
+D:\Dev\Uni_hospital\Uni_hospital.Services\obj\Debug\net7.0\refint\Uni_hospital.Services.dll
+D:\Dev\Uni_hospital\Uni_hospital.Services\obj\Debug\net7.0\Uni_hospital.Services.pdb
+D:\Dev\Uni_hospital\Uni_hospital.Services\obj\Debug\net7.0\ref\Uni_hospital.Services.dll

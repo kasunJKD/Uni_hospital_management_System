@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  hospital-db:
+    image: postgres:13
+    container_name: hospital-db
+    ports:
+      - "45432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=9221
+      - POSTGRES_DB=hospitaldb
+    # volumes:
+    #   - ./SeWa.Token.Service/Database/initial_table_create_init.sql:/docker-entrypoint-initdb.d/create_tables.sql

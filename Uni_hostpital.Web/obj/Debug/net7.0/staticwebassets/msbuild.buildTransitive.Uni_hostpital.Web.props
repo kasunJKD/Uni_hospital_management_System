@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Uni_hostpital.Web.props" />
+</Project>
