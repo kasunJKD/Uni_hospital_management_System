@@ -10,4 +10,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.9" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Uni_hospital.Utilities\Uni_hospital.Utilities.csproj" />
+    <ProjectReference Include="..\Uni_hospital.ViewModels\Uni_hospital.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>

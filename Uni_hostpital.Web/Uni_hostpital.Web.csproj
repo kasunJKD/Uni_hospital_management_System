@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Uni_hospital.Repositories\Uni_hospital.Repositories.csproj" />
+    <ProjectReference Include="..\Uni_hospital.Services\Uni_hospital.Services.csproj" />
     <ProjectReference Include="..\Uni_hospital.Utilities\Uni_hospital.Utilities.csproj" />
   </ItemGroup>
 

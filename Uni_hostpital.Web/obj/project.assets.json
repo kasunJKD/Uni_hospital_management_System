@@ -4117,6 +4117,21 @@
           "bin/placeholder/Uni_hospital.Repositories.dll": {}
         }
       },
+      "Uni_hospital.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.9",
+          "Uni_hospital.Utilities": "1.0.0",
+          "Uni_hospital.ViewModels": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Uni_hospital.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Uni_hospital.Services.dll": {}
+        }
+      },
       "Uni_hospital.Utilities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -4132,6 +4147,20 @@
         },
         "runtime": {
           "bin/placeholder/Uni_hospital.Utilities.dll": {}
+        }
+      },
+      "Uni_hospital.ViewModels/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.9",
+          "Uni_hospital.Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Uni_hospital.ViewModels.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Uni_hospital.ViewModels.dll": {}
         }
       }
     }
@@ -11881,10 +11910,20 @@
       "path": "../Uni_hospital.Repositories/Uni_hospital.Repositories.csproj",
       "msbuildProject": "../Uni_hospital.Repositories/Uni_hospital.Repositories.csproj"
     },
+    "Uni_hospital.Services/1.0.0": {
+      "type": "project",
+      "path": "../Uni_hospital.Services/Uni_hospital.Services.csproj",
+      "msbuildProject": "../Uni_hospital.Services/Uni_hospital.Services.csproj"
+    },
     "Uni_hospital.Utilities/1.0.0": {
       "type": "project",
       "path": "../Uni_hospital.Utilities/Uni_hospital.Utilities.csproj",
       "msbuildProject": "../Uni_hospital.Utilities/Uni_hospital.Utilities.csproj"
+    },
+    "Uni_hospital.ViewModels/1.0.0": {
+      "type": "project",
+      "path": "../Uni_hospital.ViewModels/Uni_hospital.ViewModels.csproj",
+      "msbuildProject": "../Uni_hospital.ViewModels/Uni_hospital.ViewModels.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -11898,6 +11937,7 @@
       "Npgsql >= 7.0.4",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 7.0.4",
       "Uni_hospital.Repositories >= 1.0.0",
+      "Uni_hospital.Services >= 1.0.0",
       "Uni_hospital.Utilities >= 1.0.0"
     ]
   },
@@ -11936,6 +11976,9 @@
           "projectReferences": {
             "D:\\Dev\\Uni_hospital\\Uni_hospital.Repositories\\Uni_hospital.Repositories.csproj": {
               "projectPath": "D:\\Dev\\Uni_hospital\\Uni_hospital.Repositories\\Uni_hospital.Repositories.csproj"
+            },
+            "D:\\Dev\\Uni_hospital\\Uni_hospital.Services\\Uni_hospital.Services.csproj": {
+              "projectPath": "D:\\Dev\\Uni_hospital\\Uni_hospital.Services\\Uni_hospital.Services.csproj"
             },
             "D:\\Dev\\Uni_hospital\\Uni_hospital.Utilities\\Uni_hospital.Utilities.csproj": {
               "projectPath": "D:\\Dev\\Uni_hospital\\Uni_hospital.Utilities\\Uni_hospital.Utilities.csproj"

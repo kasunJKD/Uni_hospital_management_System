@@ -6,6 +6,7 @@ using Uni_hospital.Utilities;
 using Uni_hospital.Repositories.Interfaces;
 using Uni_hospital.Repositories.Implementations;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Uni_hospital.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkSto
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
+builder.Services.AddTransient<IApplicationUserService, ApplicationUserService>();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
