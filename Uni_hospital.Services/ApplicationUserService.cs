@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Uni_hospital.Models;
 using Uni_hospital.Repositories.Interfaces;
 using Uni_hospital.Utilities;
+using Uni_hospital.ViewModels;
 
 namespace Uni_hospital.Services
 {
@@ -17,24 +20,173 @@ namespace Uni_hospital.Services
             _unitOfWork = unitOfWork;
         }
 
-        PagedResult<ApplicationUserViewModel> IApplicationUserService.GetAll(int PageNumber, int PageSize)
+        public PagedResult<ApplicationUserViewModel> GetAll(int PageNumber, int PageSize)
         {
-            throw new NotImplementedException();
+            var ApplicationUserViewModel = new ApplicationUserViewModel();
+            int totalCount;
+            List<ApplicationUserViewModel> usersList = new List<ApplicationUserViewModel>();
+            try
+            {
+                int ExcludeRecords = (PageSize * PageNumber) - PageSize;
+
+                var modelList = _unitOfWork.GenericRepository<ApplicationUser>().GetAll()
+                    .Skip(ExcludeRecords).Take(PageSize).ToList();
+
+                totalCount = _unitOfWork.GenericRepository<ApplicationUser>().GetAll().ToList().Count();
+
+                usersList = ConvertModelToViewModelList(modelList);
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+            var result = new PagedResult<ApplicationUserViewModel>
+            {
+                Data = usersList,
+                TotalItems = totalCount,
+                PageNumber = PageNumber,
+                PageSize = PageSize
+            };
+
+            return result;
         }
 
-        PagedResult<ApplicationUserViewModel> IApplicationUserService.GetAllDoctor(int PageNumber, int PageSize)
+        private List<ApplicationUserViewModel> ConvertModelToViewModelList(List<ApplicationUser> modelList)
         {
-            throw new NotImplementedException();
+            return modelList.Select(x => new ApplicationUserViewModel(x)).ToList();
         }
 
-        PagedResult<ApplicationUserViewModel> IApplicationUserService.GetAllPatient(int PageNumber, int PageSize)
+        public PagedResult<ApplicationUserViewModel> GetAllDoctor(int PageNumber, int PageSize)
         {
-            throw new NotImplementedException();
+            var ApplicationUserViewModel = new ApplicationUserViewModel();
+            int totalCount;
+            List<ApplicationUserViewModel> usersList = new List<ApplicationUserViewModel>();
+            try
+            {
+                int ExcludeRecords = (PageSize * PageNumber) - PageSize;
+
+                var modelList = _unitOfWork.GenericRepository<ApplicationUser>().GetAll(x=>x.IsDoctor==true)
+                    .Skip(ExcludeRecords).Take(PageSize).ToList();
+
+                totalCount = _unitOfWork.GenericRepository<ApplicationUser>().GetAll(x=>x.IsDoctor==true).ToList().Count();
+
+                usersList = ConvertModelToViewModelList(modelList);
+
+                // Check if the usersList is empty, and return an empty result if true
+                if (usersList.Count == 0)
+                {
+                    return new PagedResult<ApplicationUserViewModel>
+                    {
+                        Data = usersList,
+                        TotalItems = 0, // TotalItems should be 0 for an empty result
+                        PageNumber = PageNumber,
+                        PageSize = PageSize
+                    };
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            var result = new PagedResult<ApplicationUserViewModel>
+            {
+                Data = usersList,
+                TotalItems = totalCount,
+                PageNumber = PageNumber,
+                PageSize = PageSize
+            };
+
+            return result;
         }
 
-        PagedResult<ApplicationUserViewModel> IApplicationUserService.SearchDoctor(int PageNumber, int PageSize, string Name, int SpecialityId)
+        public PagedResult<ApplicationUserViewModel> GetAllPatient(int PageNumber, int PageSize)
         {
-            throw new NotImplementedException();
+            var ApplicationUserViewModel = new ApplicationUserViewModel();
+            int totalCount;
+            List<ApplicationUserViewModel> usersList = new List<ApplicationUserViewModel>();
+            try
+            {
+                int ExcludeRecords = (PageSize * PageNumber) - PageSize;
+
+                var modelList = _unitOfWork.GenericRepository<ApplicationUser>().GetAll(x => x.IsDoctor == false)
+                    .Skip(ExcludeRecords).Take(PageSize).ToList();
+
+                totalCount = _unitOfWork.GenericRepository<ApplicationUser>().GetAll(x => x.IsDoctor == false).ToList().Count();
+
+                usersList = ConvertModelToViewModelList(modelList);
+
+                // Check if the usersList is empty, and return an empty result if true
+                if (usersList.Count == 0)
+                {
+                    return new PagedResult<ApplicationUserViewModel>
+                    {
+                        Data = usersList,
+                        TotalItems = 0, // TotalItems should be 0 for an empty result
+                        PageNumber = PageNumber,
+                        PageSize = PageSize
+                    };
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            var result = new PagedResult<ApplicationUserViewModel>
+            {
+                Data = usersList,
+                TotalItems = totalCount,
+                PageNumber = PageNumber,
+                PageSize = PageSize
+            };
+
+            return result;
+        }
+
+        public PagedResult<ApplicationUserViewModel> SearchDoctor(int PageNumber, int PageSize, string Name, int SpecialityId)
+        {
+            int totalCount;
+            List<ApplicationUserViewModel> usersList = new List<ApplicationUserViewModel>();
+            try
+            {
+                int ExcludeRecords = (PageSize * PageNumber) - PageSize;
+
+                // Construct the predicate based on searchName
+                Expression<Func<ApplicationUser, bool>> searchPredicate = null;
+                if (!string.IsNullOrEmpty(Name))
+                {
+                    searchPredicate = user => user.IsDoctor && user.FirstName.Contains(Name) || user.LastName.Contains(Name);
+                }
+                else
+                {
+                    searchPredicate = user => user.IsDoctor;
+                }
+
+                var modelList = _unitOfWork.GenericRepository<ApplicationUser>()
+                    .GetAll(searchPredicate)
+                    .Skip(ExcludeRecords)
+                    .Take(PageSize)
+                    .ToList();
+
+                totalCount = _unitOfWork.GenericRepository<ApplicationUser>().GetAll(searchPredicate).ToList().Count();
+
+                usersList = ConvertModelToViewModelList(modelList);
+
+                // Rest of your code...
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            var result = new PagedResult<ApplicationUserViewModel>
+            {
+                Data = usersList,
+                TotalItems = totalCount,
+                PageNumber = PageNumber,
+                PageSize = PageSize
+            };
+
+            return result;
         }
     }
 }

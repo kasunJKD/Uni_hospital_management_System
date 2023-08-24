@@ -44,6 +44,7 @@
           "Npgsql": "7.0.4",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.4",
           "Uni_hospital.Repositories": "1.0.0",
+          "Uni_hospital.Services": "1.0.0",
           "Uni_hospital.Utilities": "1.0.0",
           "Microsoft.AspNetCore.Antiforgery": "7.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "7.0.0.0",
@@ -3220,6 +3221,19 @@
           "Uni_hospital.Repositories.dll": {}
         }
       },
+      "Uni_hospital.Services/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.9",
+          "Uni_hospital.Utilities": "1.0.0",
+          "Uni_hospital.ViewModels": "1.0.0"
+        },
+        "runtime": {
+          "Uni_hospital.Services.dll": {}
+        },
+        "compile": {
+          "Uni_hospital.Services.dll": {}
+        }
+      },
       "Uni_hospital.Utilities/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.10",
@@ -3233,6 +3247,18 @@
         },
         "compile": {
           "Uni_hospital.Utilities.dll": {}
+        }
+      },
+      "Uni_hospital.ViewModels/1.0.0": {
+        "dependencies": {
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.9",
+          "Uni_hospital.Models": "1.0.0"
+        },
+        "runtime": {
+          "Uni_hospital.ViewModels.dll": {}
+        },
+        "compile": {
+          "Uni_hospital.ViewModels.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/7.0.0.0": {
@@ -6644,7 +6670,17 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Uni_hospital.Services/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Uni_hospital.Utilities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Uni_hospital.ViewModels/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

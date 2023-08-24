@@ -561,3 +561,7 @@ D:\Dev\Uni_hospital\Uni_hostpital.Web\bin\Debug\net7.0\refs\System.Xml.XPath.XDo
 D:\Dev\Uni_hospital\Uni_hostpital.Web\bin\Debug\net7.0\refs\WindowsBase.dll
 D:\Dev\Uni_hospital\Uni_hostpital.Web\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
 D:\Dev\Uni_hospital\Uni_hostpital.Web\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
+D:\Dev\Uni_hospital\Uni_hostpital.Web\bin\Debug\net7.0\Uni_hospital.Services.dll
+D:\Dev\Uni_hospital\Uni_hostpital.Web\bin\Debug\net7.0\Uni_hospital.ViewModels.dll
+D:\Dev\Uni_hospital\Uni_hostpital.Web\bin\Debug\net7.0\Uni_hospital.Services.pdb
+D:\Dev\Uni_hospital\Uni_hostpital.Web\bin\Debug\net7.0\Uni_hospital.ViewModels.pdb

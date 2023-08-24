@@ -10,3 +10,12 @@ D:\Dev\Uni_hospital\Uni_hospital.Services\obj\Debug\net7.0\Uni_hospital.Services
 D:\Dev\Uni_hospital\Uni_hospital.Services\obj\Debug\net7.0\refint\Uni_hospital.Services.dll
 D:\Dev\Uni_hospital\Uni_hospital.Services\obj\Debug\net7.0\Uni_hospital.Services.pdb
 D:\Dev\Uni_hospital\Uni_hospital.Services\obj\Debug\net7.0\ref\Uni_hospital.Services.dll
+D:\Dev\Uni_hospital\Uni_hospital.Services\bin\Debug\net7.0\Uni_hospital.Models.dll
+D:\Dev\Uni_hospital\Uni_hospital.Services\bin\Debug\net7.0\Uni_hospital.Repositories.dll
+D:\Dev\Uni_hospital\Uni_hospital.Services\bin\Debug\net7.0\Uni_hospital.Utilities.dll
+D:\Dev\Uni_hospital\Uni_hospital.Services\bin\Debug\net7.0\Uni_hospital.ViewModels.dll
+D:\Dev\Uni_hospital\Uni_hospital.Services\bin\Debug\net7.0\Uni_hospital.Utilities.pdb
+D:\Dev\Uni_hospital\Uni_hospital.Services\bin\Debug\net7.0\Uni_hospital.ViewModels.pdb
+D:\Dev\Uni_hospital\Uni_hospital.Services\bin\Debug\net7.0\Uni_hospital.Models.pdb
+D:\Dev\Uni_hospital\Uni_hospital.Services\bin\Debug\net7.0\Uni_hospital.Repositories.pdb
+D:\Dev\Uni_hospital\Uni_hospital.Services\obj\Debug\net7.0\Uni_hospital.Services.csproj.CopyComplete
