@@ -25,7 +25,7 @@ namespace Uni_hospital.Utilities
 
         
 
-        public async void Initialize()
+        public void Initialize()
         {
             var SpecialitySeed = new Speciality[]
             {
@@ -48,7 +48,7 @@ namespace Uni_hospital.Utilities
 
                 throw;
             }
-/*            if (!_roleManager.RoleExistsAsync(WebSiteRoles.WebSite_Admin).GetAwaiter().GetResult())
+            if (!_roleManager.RoleExistsAsync(WebSiteRoles.WebSite_Admin).GetAwaiter().GetResult())
             {
                 _roleManager.CreateAsync(new IdentityRole(WebSiteRoles.WebSite_Admin)).GetAwaiter().GetResult();
                 _roleManager.CreateAsync(new IdentityRole(WebSiteRoles.WebSite_Patient)).GetAwaiter().GetResult();
@@ -56,15 +56,16 @@ namespace Uni_hospital.Utilities
 
                 _userManager.CreateAsync(new ApplicationUser
                 {
-                    UserName = "Admin@gmail.com",
-                    Email = "Admin@gmail.com"
-                }, "Admin").GetAwaiter().GetResult();
+                    Email = "Admin@gmail.com",
+                    UserName = "Admin",
+                    SpecialityId = null,
+                }, "Mate1234!").GetAwaiter().GetResult();
                 var Appuser = _context.Users.FirstOrDefault(x => x.Email == "Admin@gmail.com");
                 if (Appuser != null)
                 {
                     _userManager.AddToRoleAsync(Appuser, WebSiteRoles.WebSite_Admin).GetAwaiter().GetResult();
                 }
-            }*/
+            }
 
             //seeding to tables
             _context.Database.EnsureCreated(); // Ensure database is created
@@ -79,8 +80,8 @@ namespace Uni_hospital.Utilities
             // Create Identity users
 
 
-
-            try
+            //debug lines
+           /* try
             {
                 var user1 = new ApplicationUser
                 {
@@ -95,7 +96,7 @@ namespace Uni_hospital.Utilities
             catch (Exception ex)
             {
                 throw;
-            }
+            }*/
         }
     }
 }
