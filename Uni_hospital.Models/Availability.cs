@@ -9,7 +9,8 @@ namespace Uni_hospital.Models
     public class Availability
     {
         public int Id { get; set; }
-        public ApplicationUser DoctorId { get; set; }
+        public string DoctorId { get; set; }
+        public ApplicationUser Doctor { get; set; }
         public DateTime Date { get; set; }
         public int StartTime { get; set; }
         public int EndTime { get; set; }

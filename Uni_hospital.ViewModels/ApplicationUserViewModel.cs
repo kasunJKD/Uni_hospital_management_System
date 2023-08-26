@@ -9,7 +9,7 @@ namespace Uni_hospital.ViewModels
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int SpecialistId { get; set; }
+        public int? SpecialistId { get; set; }
         public string SpecialistName { get; set; }
         public bool isDoctor { get; set; }
         public Gender Gender { get; set; }
