@@ -29,10 +29,17 @@ namespace Uni_hospital.Utilities
         {
             var SpecialitySeed = new Speciality[]
             {
-                new Speciality { Id=1, Name = "Patient", Description="Patient" },
-                new Speciality { Id=2, Name = "Cardio", Description="Cardio" },
-                new Speciality { Id=3, Name = "Special2",Description= "Special2" },
-                // Add more products
+                new Speciality { Id=1, Name = "Any", Description="Any" },
+                new Speciality { Id=2, Name = "Aesthetic Physician", Description="Aesthetic Physician" },
+                new Speciality { Id=3, Name = "Allergy And Immunology",Description= "Allergy And Immunology" },
+                new Speciality { Id=4, Name = "Anaesthetist",Description= "Anaesthetist" },
+                new Speciality { Id=5, Name = "Applied Psychologist",Description= "Applied Psychologist" },
+                new Speciality { Id=6, Name = "Audiologist",Description= "Audiologist" },
+                new Speciality { Id=7, Name = "Cardiologist",Description= "Cardiologist" },
+                new Speciality { Id=8, Name = "Gynaecologist",Description= "Gynaecologist" },
+                new Speciality { Id=9, Name = "Bacteriologist",Description= "Bacteriologist" },
+                new Speciality { Id=10, Name = "Breast and Cancer Surgeon",Description= "Breast and Cancer Surgeon" },
+                new Speciality { Id=11, Name = "Child Psychologist",Description= "Child Psychologist" },
             };
 
 
