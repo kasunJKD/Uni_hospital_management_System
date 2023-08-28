@@ -54,7 +54,6 @@ namespace Uni_hospital.Repositories
         public DbSet<Availability> Availability { get; set; }
         public DbSet<PrescribedMedicine> PrescribedMedicine { get; set; }
         public DbSet<PatientReport> PatientReports { get; set; }
-        public DbSet<MedicineReport> MedicineReport { get; set; }
         public DbSet<Medicine> Medicine { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<LabResults> LabResults { get; set; }

@@ -14,6 +14,7 @@ namespace Uni_hospital.ViewModels
         public bool isDoctor { get; set; }
         public Gender Gender { get; set; }
         public string SearchName { get; set; }
+        
 
         public ApplicationUserViewModel() { }
 
@@ -27,6 +28,7 @@ namespace Uni_hospital.ViewModels
             SpecialistName = user.Speciality.Name;
             isDoctor = user.IsDoctor;
             Gender = user.Gender;
+
         }
 
         public ApplicationUser ConvertViewModelToModel(ApplicationUserViewModel user)

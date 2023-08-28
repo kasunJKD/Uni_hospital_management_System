@@ -39,7 +39,6 @@ namespace Uni_hospital.Utilities
                 new Speciality { Id=8, Name = "Gynaecologist",Description= "Gynaecologist" },
                 new Speciality { Id=9, Name = "Bacteriologist",Description= "Bacteriologist" },
                 new Speciality { Id=10, Name = "Breast and Cancer Surgeon",Description= "Breast and Cancer Surgeon" },
-                new Speciality { Id=11, Name = "Child Psychologist",Description= "Child Psychologist" },
             };
 
 

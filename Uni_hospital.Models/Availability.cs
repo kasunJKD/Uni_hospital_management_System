@@ -17,6 +17,7 @@ namespace Uni_hospital.Models
         public Zone zone { get; set; }
         public int Duration { get; set; }
         public Status Status { get; set; }
+        public ICollection<Appointment>? Appointments { get; set; }
     }
 
    

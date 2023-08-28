@@ -13,7 +13,6 @@ namespace Uni_hospital.Models
         public string Description { get; set; }
         public string Type { get; set; }
         public decimal Cost { get; set; }
-        public ICollection<MedicineReport> MedicineReports { get; set; }
         public ICollection<PrescribedMedicine> PrescribedMedicine { get; set; }
     }
 }

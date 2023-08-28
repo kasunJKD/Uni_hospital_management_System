@@ -14,6 +14,11 @@ namespace Uni_hospital.Repositories.Interfaces
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy=null,
             string includeProperties = "");
 
+        Task<T> GetOneByList(
+    Expression<Func<T, bool>> filter = null,
+    Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+    string includeProperties = "");
+
         T GetById(object id);
         Task<T> GetByIdAsync(object id);
         void Add(T entity);
