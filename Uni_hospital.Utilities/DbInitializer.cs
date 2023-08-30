@@ -84,25 +84,64 @@ namespace Uni_hospital.Utilities
                 _context.SaveChanges();
             }
             // Create Identity users
+            var user1 = new ApplicationUser
+            {
+                Email = "Doctor1@gmail.com",
+                UserName = "Doctor1",
+                FirstName = "Doctor1",
+                LastName = "Doctor1LastName",
+                SpecialityId = 2,
+                IsDoctor=true,
+            };
+
+            _userManager.CreateAsync(user1, "Mate1234!").GetAwaiter().GetResult();
+
+
+            // Create Identity users
+            var user2 = new ApplicationUser
+            {
+                Email = "Doctor2@gmail.com",
+                UserName = "Doctor2",
+                FirstName = "Doctor2",
+                LastName = "Doctor2LastName",
+                SpecialityId = 3,
+                IsDoctor = true,
+            };
+
+            _userManager.CreateAsync(user2, "Mate1234!").GetAwaiter().GetResult();
+
+
+            // Create Identity users
+            var user3 = new ApplicationUser
+            {
+                Email = "Patient1@gmail.com",
+                UserName = "Patient1",
+                FirstName = "Patient1",
+                LastName = "PLastName1",
+                IsDoctor = false,
+                SpecialityId = 1,
+            };
+
+            _userManager.CreateAsync(user3, "Mate1234!").GetAwaiter().GetResult();
 
 
             //debug lines
-           /* try
-            {
-                var user1 = new ApplicationUser
-                {
-                    Email = "Admin@gmail.com",
-                    UserName = "Admin",
-                    SpecialityId = null,
-                };
-                
-                _userManager.CreateAsync(user1, "Mate1234!").GetAwaiter().GetResult();
+            /* try
+             {
+                 var user1 = new ApplicationUser
+                 {
+                     Email = "Admin@gmail.com",
+                     UserName = "Admin",
+                     SpecialityId = null,
+                 };
 
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }*/
+                 _userManager.CreateAsync(user1, "Mate1234!").GetAwaiter().GetResult();
+
+             }
+             catch (Exception ex)
+             {
+                 throw;
+             }*/
         }
     }
 }

@@ -12,8 +12,8 @@ using Uni_hospital.Repositories;
 namespace Uni_hospital.Repositories.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230826064142_initial")]
-    partial class initial
+    [Migration("20230830065616_availabilityCheck")]
+    partial class availabilityCheck
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -226,7 +226,7 @@ namespace Uni_hospital.Repositories.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
-                    b.Property<int>("SpecialityId")
+                    b.Property<int?>("SpecialityId")
                         .HasColumnType("integer");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -258,26 +258,26 @@ namespace Uni_hospital.Repositories.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AvailabilityId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("AvailablityId")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("DoctorId")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Number")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("Number")
+                        .HasColumnType("integer");
 
                     b.Property<string>("PatientId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -285,6 +285,8 @@ namespace Uni_hospital.Repositories.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AvailabilityId");
 
                     b.HasIndex("DoctorId");
 
@@ -308,14 +310,8 @@ namespace Uni_hospital.Repositories.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Duration")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("EndTime")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("StartTime")
-                        .HasColumnType("integer");
+                    b.Property<TimeOnly>("StartTime")
+                        .HasColumnType("time without time zone");
 
                     b.Property<int>("Status")
                         .HasColumnType("integer");
@@ -410,41 +406,6 @@ namespace Uni_hospital.Repositories.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Medicine");
-                });
-
-            modelBuilder.Entity("Uni_hospital.Models.MedicineReport", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Company")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("ExpireDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("MedicineId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("ProductionDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MedicineId");
-
-                    b.ToTable("MedicineReport");
                 });
 
             modelBuilder.Entity("Uni_hospital.Models.PatientReport", b =>
@@ -610,15 +571,19 @@ namespace Uni_hospital.Repositories.Migrations
                 {
                     b.HasOne("Uni_hospital.Models.Speciality", "Speciality")
                         .WithMany("ApplicationUsers")
-                        .HasForeignKey("SpecialityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SpecialityId");
 
                     b.Navigation("Speciality");
                 });
 
             modelBuilder.Entity("Uni_hospital.Models.Appointment", b =>
                 {
+                    b.HasOne("Uni_hospital.Models.Availability", "Availability")
+                        .WithMany("Appointments")
+                        .HasForeignKey("AvailabilityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Uni_hospital.Models.ApplicationUser", "Doctor")
                         .WithMany()
                         .HasForeignKey("DoctorId")
@@ -630,6 +595,8 @@ namespace Uni_hospital.Repositories.Migrations
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Availability");
 
                     b.Navigation("Doctor");
 
@@ -667,17 +634,6 @@ namespace Uni_hospital.Repositories.Migrations
                         .IsRequired();
 
                     b.Navigation("PatientReport");
-                });
-
-            modelBuilder.Entity("Uni_hospital.Models.MedicineReport", b =>
-                {
-                    b.HasOne("Uni_hospital.Models.Medicine", "Medicine")
-                        .WithMany("MedicineReports")
-                        .HasForeignKey("MedicineId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Medicine");
                 });
 
             modelBuilder.Entity("Uni_hospital.Models.PatientReport", b =>
@@ -725,10 +681,13 @@ namespace Uni_hospital.Repositories.Migrations
                     b.Navigation("Feedbacks");
                 });
 
+            modelBuilder.Entity("Uni_hospital.Models.Availability", b =>
+                {
+                    b.Navigation("Appointments");
+                });
+
             modelBuilder.Entity("Uni_hospital.Models.Medicine", b =>
                 {
-                    b.Navigation("MedicineReports");
-
                     b.Navigation("PrescribedMedicine");
                 });
 

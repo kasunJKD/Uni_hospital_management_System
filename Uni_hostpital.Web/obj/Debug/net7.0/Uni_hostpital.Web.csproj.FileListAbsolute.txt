@@ -565,3 +565,5 @@ D:\Dev\Uni_hospital\Uni_hostpital.Web\bin\Debug\net7.0\Uni_hospital.Services.dll
 D:\Dev\Uni_hospital\Uni_hostpital.Web\bin\Debug\net7.0\Uni_hospital.ViewModels.dll
 D:\Dev\Uni_hospital\Uni_hostpital.Web\bin\Debug\net7.0\Uni_hospital.Services.pdb
 D:\Dev\Uni_hospital\Uni_hostpital.Web\bin\Debug\net7.0\Uni_hospital.ViewModels.pdb
+D:\Dev\Uni_hospital\Uni_hostpital.Web\bin\Debug\net7.0\cloudscribe.Pagination.Models.dll
+D:\Dev\Uni_hospital\Uni_hostpital.Web\bin\Debug\net7.0\cloudscribe.Web.Pagination.dll

@@ -29,7 +29,7 @@ namespace Uni_hospital.Services
             {
                 int ExcludeRecords = (PageSize * PageNumber) - PageSize;
 
-                var modelList = _unitOfWork.GenericRepository<ApplicationUser>().GetAll()
+                var modelList = _unitOfWork.GenericRepository<ApplicationUser>().GetAll(includeProperties: "Speciality")
                     .Skip(ExcludeRecords).Take(PageSize).ToList();
 
                 totalCount = _unitOfWork.GenericRepository<ApplicationUser>().GetAll().ToList().Count();
@@ -65,7 +65,7 @@ namespace Uni_hospital.Services
             {
                 int ExcludeRecords = (PageSize * PageNumber) - PageSize;
 
-                var modelList = _unitOfWork.GenericRepository<ApplicationUser>().GetAll(x=>x.IsDoctor==true)
+                var modelList = _unitOfWork.GenericRepository<ApplicationUser>().GetAll(x=>x.IsDoctor==true, includeProperties: "Speciality")
                     .Skip(ExcludeRecords).Take(PageSize).ToList();
 
                 totalCount = _unitOfWork.GenericRepository<ApplicationUser>().GetAll(x=>x.IsDoctor==true).ToList().Count();
@@ -108,7 +108,7 @@ namespace Uni_hospital.Services
             {
                 int ExcludeRecords = (PageSize * PageNumber) - PageSize;
 
-                var modelList = _unitOfWork.GenericRepository<ApplicationUser>().GetAll(x => x.IsDoctor == false)
+                var modelList = _unitOfWork.GenericRepository<ApplicationUser>().GetAll(x => x.IsDoctor == false && x.UserName != "Admin", includeProperties: "Speciality")
                     .Skip(ExcludeRecords).Take(PageSize).ToList();
 
                 totalCount = _unitOfWork.GenericRepository<ApplicationUser>().GetAll(x => x.IsDoctor == false).ToList().Count();
@@ -187,6 +187,25 @@ namespace Uni_hospital.Services
             };
 
             return result;
+        }
+
+        public List<ApplicationUserViewModel> GetAllDoctorListDropDown()
+        {
+            List<ApplicationUserViewModel> usersList = new List<ApplicationUserViewModel>();
+            try
+            {
+
+                var modelList = _unitOfWork.GenericRepository<ApplicationUser>().GetAll(x => x.IsDoctor == true, includeProperties: "Speciality").ToList();
+
+                usersList = ConvertModelToViewModelList(modelList);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+
+            return usersList;
         }
     }
 }

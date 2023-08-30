@@ -93,7 +93,7 @@ namespace Uni_hospital.Repositories.Implementations
             }
         }
 
-        public async Task<T> GetOneByListAsync(
+        public async Task<T> GetOneByList(
     Expression<Func<T, bool>> filter = null,
     Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
     string includeProperties = "")

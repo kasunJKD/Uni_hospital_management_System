@@ -469,6 +469,10 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[7.0.4, )"
+            },
+            "cloudscribe.Web.Pagination": {
+              "target": "Package",
+              "version": "[6.0.0, )"
             }
           },
           "imports": [

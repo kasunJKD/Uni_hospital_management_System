@@ -5,12 +5,13 @@ namespace Uni_hospital.ViewModels
     public class ApplicationUserViewModel
     {
         public List<ApplicationUser> Doctors { get; set; } = new List<ApplicationUser>();
+        public string Id { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int? SpecialistId { get; set; }
-        public string SpecialistName { get; set; }
+        public string? SpecialistName { get; set; }
         public bool isDoctor { get; set; }
         public Gender Gender { get; set; }
         public string SearchName { get; set; }
@@ -20,6 +21,7 @@ namespace Uni_hospital.ViewModels
 
         public ApplicationUserViewModel(ApplicationUser user)
         {
+            Id=user.Id;
             UserName = user.UserName;
             Email = user.Email;
             FirstName = user.FirstName;
@@ -35,6 +37,7 @@ namespace Uni_hospital.ViewModels
         {
             return new ApplicationUser
             {
+                Id = user.Id,
                 UserName = user.UserName,
                 Email = user.Email,
                 FirstName = user.FirstName,

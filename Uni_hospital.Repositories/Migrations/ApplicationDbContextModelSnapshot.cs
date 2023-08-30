@@ -255,26 +255,26 @@ namespace Uni_hospital.Repositories.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AvailabilityId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("AvailablityId")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("DoctorId")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Number")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("Number")
+                        .HasColumnType("integer");
 
                     b.Property<string>("PatientId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -282,6 +282,8 @@ namespace Uni_hospital.Repositories.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AvailabilityId");
 
                     b.HasIndex("DoctorId");
 
@@ -305,14 +307,8 @@ namespace Uni_hospital.Repositories.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Duration")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("EndTime")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("StartTime")
-                        .HasColumnType("integer");
+                    b.Property<TimeOnly>("StartTime")
+                        .HasColumnType("time without time zone");
 
                     b.Property<int>("Status")
                         .HasColumnType("integer");
@@ -579,6 +575,12 @@ namespace Uni_hospital.Repositories.Migrations
 
             modelBuilder.Entity("Uni_hospital.Models.Appointment", b =>
                 {
+                    b.HasOne("Uni_hospital.Models.Availability", "Availability")
+                        .WithMany("Appointments")
+                        .HasForeignKey("AvailabilityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Uni_hospital.Models.ApplicationUser", "Doctor")
                         .WithMany()
                         .HasForeignKey("DoctorId")
@@ -590,6 +592,8 @@ namespace Uni_hospital.Repositories.Migrations
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Availability");
 
                     b.Navigation("Doctor");
 
@@ -672,6 +676,11 @@ namespace Uni_hospital.Repositories.Migrations
                     b.Navigation("Availabilities");
 
                     b.Navigation("Feedbacks");
+                });
+
+            modelBuilder.Entity("Uni_hospital.Models.Availability", b =>
+                {
+                    b.Navigation("Appointments");
                 });
 
             modelBuilder.Entity("Uni_hospital.Models.Medicine", b =>

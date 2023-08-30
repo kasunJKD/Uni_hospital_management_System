@@ -16,6 +16,22 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = D:\Dev\Uni_hospital\Uni_hostpital.Web
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Dev/Uni_hospital/Uni_hostpital.Web/Areas/Admin/Views/Availability/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXZhaWxhYmlsaXR5XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Uni_hospital/Uni_hostpital.Web/Areas/Admin/Views/Availability/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXZhaWxhYmlsaXR5XEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Uni_hospital/Uni_hostpital.Web/Areas/Admin/Views/Availability/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXZhaWxhYmlsaXR5XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Uni_hospital/Uni_hostpital.Web/Areas/Admin/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Dev/Uni_hospital/Uni_hostpital.Web/Areas/Admin/Views/Users/AllDoctors.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlcnNcQWxsRG9jdG9ycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

@@ -19,8 +19,8 @@ namespace Uni_hospital.Models
         public string? Nationality { get; set; }
         public string? Address { get; set; }
         public DateTime DOB { get; set; }
-        public int? SpecialityId { get; set; }
-        public virtual Speciality? Speciality { get; set; }
+        public int? SpecialityId { get; set; } = 0;
+        public Speciality? Speciality { get; set; }
 
         public bool IsDoctor { get; set; }
         public string? PictureUri { get; set; }

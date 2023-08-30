@@ -12,12 +12,11 @@ namespace Uni_hospital.Models
         public string DoctorId { get; set; }
         public ApplicationUser Doctor { get; set; }
         public DateTime Date { get; set; }
-        public int StartTime { get; set; }
-        public int EndTime { get; set; }
+        public TimeOnly StartTime { get; set; }
         public Zone zone { get; set; }
-        public int Duration { get; set; }
         public Status Status { get; set; }
         public ICollection<Appointment>? Appointments { get; set; }
+        
     }
 
    
