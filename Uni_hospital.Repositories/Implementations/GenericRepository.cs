@@ -126,6 +126,19 @@ namespace Uni_hospital.Repositories.Implementations
             return dbSet.Find(id);
         }
 
+        public T GetByKey(Func<T, bool> filter, string includeProperties = "")
+        {
+            var query = dbSet.AsQueryable(); // Create a queryable DbSet
+
+            // Use a foreach loop to include related properties
+            foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty.Trim()); // Trim to remove any leading/trailing whitespace
+            }
+
+            return query.SingleOrDefault(filter);
+        }
+
         public async Task<T> GetByIdAsync(object id)
         {
             return await dbSet.FindAsync(id);

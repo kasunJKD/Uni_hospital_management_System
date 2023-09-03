@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Uni_hospital.Models;
+using Uni_hospital.Utilities;
 
 namespace Uni_hostpital.Web.Areas.Identity.Pages.Account
 {
@@ -30,13 +31,15 @@ namespace Uni_hostpital.Web.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private IWebHostEnvironment _env;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             IUserStore<ApplicationUser> userStore,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IWebHostEnvironment env)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -44,6 +47,7 @@ namespace Uni_hostpital.Web.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _env = env;
         }
 
         /// <summary>
@@ -98,6 +102,13 @@ namespace Uni_hostpital.Web.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public Gender Gender { get; set; }
+            public string Address { get; set; }
+            public DateTime DOB { get; set; }
+            public int? SpecialityId { get; set; } = 1;
+            public bool IsDoctor { get; set; } = false;
         }
 
 
@@ -117,24 +128,30 @@ namespace Uni_hostpital.Web.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+                user.DOB = Input.DOB;
+                user.Gender = Input.Gender;
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+                    await _userManager.AddToRoleAsync(user, WebSiteRoles.WebSite_Patient);
 
                     var userId = await _userManager.GetUserIdAsync(user);
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
+                    /*                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                                        code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                                        var callbackUrl = Url.Page(
+                                            "/Account/ConfirmEmail",
+                                            pageHandler: null,
+                                            values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+                                            protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
+                                        await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                                            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    */
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
                         return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });

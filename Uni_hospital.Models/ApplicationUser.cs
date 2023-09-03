@@ -16,10 +16,9 @@ namespace Uni_hospital.Models
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public Gender Gender { get; set; }
-        public string? Nationality { get; set; }
         public string? Address { get; set; }
         public DateTime DOB { get; set; }
-        public int? SpecialityId { get; set; } = 0;
+        public int? SpecialityId { get; set; } = 1;
         public Speciality? Speciality { get; set; }
 
         public bool IsDoctor { get; set; }

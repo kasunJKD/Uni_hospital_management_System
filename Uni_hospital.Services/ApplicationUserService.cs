@@ -150,11 +150,22 @@ namespace Uni_hospital.Services
             {
                 int ExcludeRecords = (PageSize * PageNumber) - PageSize;
 
-                // Construct the predicate based on searchName
+                // Construct the predicate based on searchName and SpecialityId
                 Expression<Func<ApplicationUser, bool>> searchPredicate = null;
-                if (!string.IsNullOrEmpty(Name))
+                if (!string.IsNullOrEmpty(Name) && SpecialityId != 0)
                 {
-                    searchPredicate = user => user.IsDoctor && user.FirstName.Contains(Name) || user.LastName.Contains(Name);
+                    searchPredicate = user => user.IsDoctor &&
+                        (user.FirstName.Contains(Name) || user.LastName.Contains(Name)) &&
+                        user.SpecialityId == SpecialityId;
+                }
+                else if (!string.IsNullOrEmpty(Name))
+                {
+                    searchPredicate = user => user.IsDoctor &&
+                        (user.FirstName.Contains(Name) || user.LastName.Contains(Name));
+                }
+                else if (SpecialityId != 0)
+                {
+                    searchPredicate = user => user.IsDoctor && user.SpecialityId == SpecialityId;
                 }
                 else
                 {
@@ -162,7 +173,7 @@ namespace Uni_hospital.Services
                 }
 
                 var modelList = _unitOfWork.GenericRepository<ApplicationUser>()
-                    .GetAll(searchPredicate)
+                    .GetAll(searchPredicate, includeProperties: "Speciality")
                     .Skip(ExcludeRecords)
                     .Take(PageSize)
                     .ToList();
@@ -206,6 +217,13 @@ namespace Uni_hospital.Services
 
 
             return usersList;
+        }
+
+        public ApplicationUserViewModel GetUsertById(string id)
+        {
+            var model = _unitOfWork.GenericRepository<ApplicationUser>().GetByKey(e => e.Id == id, includeProperties: "Speciality");
+            var vm = new ApplicationUserViewModel(model);
+            return vm;
         }
     }
 }

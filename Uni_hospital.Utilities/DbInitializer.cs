@@ -111,7 +111,7 @@ namespace Uni_hospital.Utilities
             _userManager.CreateAsync(user2, "Mate1234!").GetAwaiter().GetResult();
 
 
-            // Create Identity users
+            // Create Identity patient
             var user3 = new ApplicationUser
             {
                 Email = "Patient1@gmail.com",

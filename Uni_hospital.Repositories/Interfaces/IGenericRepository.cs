@@ -27,5 +27,6 @@ namespace Uni_hospital.Repositories.Interfaces
         Task<T> UpdateAsync(T entity);  
         void Delete(T entity);
         Task<T> DeleteAsync(T entity);
+        T GetByKey(Func<T, bool> filter, string includeProperties = "");
     }
 }

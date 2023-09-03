@@ -18,6 +18,7 @@ namespace Uni_hospital.ViewModels
         public TimeOnly StartTime { get; set; }
         public Zone zone { get; set; }
         public Status Status { get; set; }
+        public int SpecialityId { get; set; }
 
         public AvailabilityViewModel() { }
 

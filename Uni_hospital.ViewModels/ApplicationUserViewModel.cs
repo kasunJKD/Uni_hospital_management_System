@@ -15,7 +15,6 @@ namespace Uni_hospital.ViewModels
         public bool isDoctor { get; set; }
         public Gender Gender { get; set; }
         public string SearchName { get; set; }
-        
 
         public ApplicationUserViewModel() { }
 
