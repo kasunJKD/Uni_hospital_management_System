@@ -39,7 +39,9 @@ namespace Uni_hostpital.Web.Areas.Patient.Controllers
 
         public IActionResult GetAvailabilityInfo(string DoctorId, int SpecialityId = 0)
         {
-            return View();
+            var availList = _availabilityService.GetAllActiveAvailabilityById(DoctorId, SpecialityId);
+
+            return View(availList);
         }
     }
 }

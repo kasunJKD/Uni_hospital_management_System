@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Drawing.Printing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Uni_hospital.Models;
 using Uni_hospital.Repositories.Interfaces;
 using Uni_hospital.Utilities;
@@ -58,23 +60,37 @@ namespace Uni_hospital.Services
             return result;
         }
 
-        public List<AvailabilityViewModel> GetAllActiveAvailabilityById(string id)
+        public List<AvailabilityViewModel> GetAllActiveAvailabilityById(string userId, int specialityId)
         {
-            List<AvailabilityViewModel> usersList = new List<AvailabilityViewModel>();
+            List<AvailabilityViewModel> groupedUsersList = new List<AvailabilityViewModel>();
             try
             {
+                // Construct the predicate based on searchName and SpecialityId
+                Expression<Func<Availability, bool>> searchPredicate = null;
+                if (!string.IsNullOrEmpty(userId) && specialityId != 0)
+                {
+                    searchPredicate = user => user.Doctor.Id.Contains(userId) && user.Doctor.SpecialityId == specialityId;
+                }
+                else if (!string.IsNullOrEmpty(userId))
+                {
+                    searchPredicate = user => user.Doctor.Id.Contains(userId);
+                }
+                else if (specialityId != 0)
+                {
+                    searchPredicate = user => user.Doctor.SpecialityId == specialityId;
+                }
 
-                var modelList = _unitOfWork.GenericRepository<Availability>().GetAll(
-                filter: a => a.DoctorId == id && a.Status == 0,
-                orderBy: q => q.OrderBy(a => a.StartTime)).ToList();
+                var modelList = _unitOfWork.GenericRepository<Availability>()
+                    .GetAll(searchPredicate, includeProperties: "Doctor")
+                    .ToList();
 
-                usersList = ConvertModelToViewModelList(modelList);
+                groupedUsersList = ConvertModelToViewModelList(modelList);
             }
             catch (Exception)
             {
                 throw;
             }
-            return usersList;
+            return groupedUsersList;
         }
 
         public AvailabilityViewModel GetAvailabilitytById(int id)

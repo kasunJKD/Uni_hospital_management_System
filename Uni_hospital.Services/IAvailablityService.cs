@@ -10,7 +10,7 @@ namespace Uni_hospital.Services
 {
     public interface IAvailablityService
     {
-        List<AvailabilityViewModel> GetAllActiveAvailabilityById(string id);
+        List<AvailabilityViewModel> GetAllActiveAvailabilityById(string userId, int specialityId);
         PagedResult<AvailabilityViewModel> GetAll(int pageNumber, int pageSize);
         AvailabilityViewModel GetAvailabilitytById(int id);
         void CreateAvailability(AvailabilityViewModel availability);
