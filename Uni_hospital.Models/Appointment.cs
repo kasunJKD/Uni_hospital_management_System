@@ -17,7 +17,7 @@ namespace Uni_hospital.Models
         public ApplicationUser Doctor { get; set; }
         public string PatientId { get; set; }
         public ApplicationUser Patient { get; set; }
-        public int AvailablityId { get; set;}
+        public int AvailabilityId { get; set;}
         public Availability Availability { get; set; }
     }
 }

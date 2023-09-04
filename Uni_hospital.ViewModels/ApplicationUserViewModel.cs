@@ -2,6 +2,14 @@
 
 namespace Uni_hospital.ViewModels
 {
+    //admin prescribe meds to patients
+    //add medicine create
+    //create feedback
+    //admin create patient report
+    //get list of patient reports
+    //check info in patient reports
+    //create tips
+    //show tips randomly
     public class ApplicationUserViewModel
     {
         public List<ApplicationUser> Doctors { get; set; } = new List<ApplicationUser>();

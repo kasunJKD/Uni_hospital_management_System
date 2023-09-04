@@ -12,6 +12,7 @@ namespace Uni_hospital.Services
     {
         PagedResult<AppointmentViewModel>GetAll(int pageNumber, int pageSize);
         AppointmentViewModel GetAppointmentById(int id);
-        void CreateAppointment(AppointmentViewModel appointment);
+        int CreateAppointment(AppointmentViewModel appointment);
+        List<AppointmentViewModel> GetAppointmentsByAvailabilityId(int availabilityId);
     }
 }

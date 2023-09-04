@@ -38,7 +38,7 @@ namespace Uni_hospital.Services
             {
                 int ExcludeRecords = (pageSize * pageNumber) - pageSize;
 
-                var modelList = _unitOfWork.GenericRepository<Availability>().GetAll(includeProperties: "Doctor")
+                var modelList = _unitOfWork.GenericRepository<Availability>().GetAll(includeProperties: "Doctor.Speciality")
                     .Skip(ExcludeRecords).Take(pageSize).ToList();
 
                 totalCount = _unitOfWork.GenericRepository<Availability>().GetAll().ToList().Count();
@@ -95,7 +95,7 @@ namespace Uni_hospital.Services
 
         public AvailabilityViewModel GetAvailabilitytById(int id)
         {
-            var model = _unitOfWork.GenericRepository<Availability>().GetById(id);
+            var model = _unitOfWork.GenericRepository<Availability>().GetByKey(e=>e.Id==id,includeProperties: "Doctor.Speciality");
             var vm = new AvailabilityViewModel(model);
             return vm;
         }

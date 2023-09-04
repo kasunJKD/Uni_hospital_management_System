@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Claims;
 using Uni_hospital.Models;
 using Uni_hospital.Services;
 using Uni_hospital.ViewModels;
@@ -19,12 +21,15 @@ namespace Uni_hostpital.Web.Areas.Patient.Controllers
         private IAvailablityService _availabilityService;
         private ISpecialityService _specialityService;
         private IApplicationUserService _applicationUserService;
+        private IAppointmentService _appointmentService;
 
-        public AppointmentController(IAvailablityService availabilityService, ISpecialityService specialityService, IApplicationUserService applicationUserService)
+        public AppointmentController(IAvailablityService availabilityService, ISpecialityService specialityService, IApplicationUserService applicationUserService, IAppointmentService appointmentService)
         {
             _availabilityService = availabilityService;
             _specialityService = specialityService;
             _applicationUserService = applicationUserService;
+            _appointmentService = appointmentService;
+
         }
         public IActionResult Index()
         {
@@ -47,43 +52,48 @@ namespace Uni_hostpital.Web.Areas.Patient.Controllers
         }
 
         [HttpGet]
-        public IActionResult CreateAppointment()
+        [Authorize]
+        public IActionResult CreateAppointment(int id)
         {
-            var doctors = _applicationUserService.GetAllDoctorListDropDown();
-            var doctorList = doctors.Select(d => new {
-                DoctorId = d.Id,
-                FullName = $"{d.FirstName} {d.LastName}" // Concatenate first name and last name
-            });
-
-            // Get all the enum values as a list of SelectListItem
-            var enumValues = Enum.GetValues(typeof(Status))
-                                 .Cast<Status>()
-                                 .Select(e => new SelectListItem
-                                 {
-                                     Value = e.ToString(), // Convert enum value to string
-                                     Text = e.ToString() // Convert enum value to string
-                                 })
-                                 .ToList();
-            // Get all the enum values as a list of SelectListItem
-            var zoneVals = Enum.GetValues(typeof(Zone))
-                                 .Cast<Zone>()
-                                 .Select(e => new SelectListItem
-                                 {
-                                     Value = e.ToString(), // Convert enum value to string
-                                     Text = e.ToString() // Convert enum value to string
-                                 })
-                                 .ToList();
-            ViewBag.zone = new SelectList(zoneVals, "Value", "Text");
-            ViewBag.status = new SelectList(enumValues, "Value", "Text");
-            ViewBag.doctor = new SelectList(doctorList, "DoctorId", "FullName");
+            //get current availabilityData
+            var viewModel = _availabilityService.GetAvailabilitytById(id);
+            //get logged in UserData
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var userData = _applicationUserService.GetUsertById(userId);
+            if (userData != null)
+            {
+                ViewBag.loggedUserData = userData;
+            }
+            
+            //get appointment by id (availabilityId)
+            //count them
+            //show it
+            var count = _appointmentService.GetAppointmentsByAvailabilityId(id).Count();
+            ViewBag.appointmentCount = count;
+            ViewBag.AvailibilityId = id;
+            ViewBag.viewModel = viewModel;
             return View();
         }
 
-/*        [HttpPost]
-        public IActionResult CreateAppointment(AvailabilityViewModel vm)
+        [HttpPost]
+        public IActionResult CreateAppointment(AppointmentViewModel vm)
         {
-            _availablityService.CreateAvailability(vm);
-            return RedirectToAction("Index");
-        }*/
+            int id = _appointmentService.CreateAppointment(vm);
+            // Store appointmentId in TempData
+            TempData["CreatedAppointmentId"] = id;
+            return RedirectToAction("GetCreatedAppointmentInfo");
+        }
+
+        public IActionResult GetCreatedAppointmentInfo()
+        {
+            AppointmentViewModel viewModel = new AppointmentViewModel();
+            // Retrieve appointmentId from TempData
+            if (TempData.TryGetValue("CreatedAppointmentId", out object appointmentIdObj) && appointmentIdObj is int appointmentId)
+            {
+                viewModel = _appointmentService.GetAppointmentById(appointmentId);
+            }
+
+            return View(viewModel);
+        }
     }
 }

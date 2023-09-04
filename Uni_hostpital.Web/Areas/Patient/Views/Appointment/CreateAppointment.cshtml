@@ -9,78 +9,40 @@
 <h4>AppointmentViewModel</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="CreateAppointment">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Number" class="control-label"></label>
-                <input asp-for="Number" class="form-control" />
-                <span asp-validation-for="Number" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UpdatedDate" class="control-label"></label>
-                <input asp-for="UpdatedDate" class="form-control" />
-                <span asp-validation-for="UpdatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DoctorFirstName" class="control-label"></label>
-                <input asp-for="DoctorFirstName" class="form-control" />
-                <span asp-validation-for="DoctorFirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DoctorLastName" class="control-label"></label>
-                <input asp-for="DoctorLastName" class="form-control" />
-                <span asp-validation-for="DoctorLastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PatientFirstName" class="control-label"></label>
-                <input asp-for="PatientFirstName" class="form-control" />
-                <span asp-validation-for="PatientFirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PatientLastName" class="control-label"></label>
-                <input asp-for="PatientLastName" class="form-control" />
-                <span asp-validation-for="PatientLastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SpecialityName" class="control-label"></label>
-                <input asp-for="SpecialityName" class="form-control" />
-                <span asp-validation-for="SpecialityName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SpecialityDescription" class="control-label"></label>
-                <input asp-for="SpecialityDescription" class="form-control" />
-                <span asp-validation-for="SpecialityDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DoctorId" class="control-label"></label>
-                <input asp-for="DoctorId" class="form-control" />
-                <span asp-validation-for="DoctorId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PatientId" class="control-label"></label>
-                <input asp-for="PatientId" class="form-control" />
-                <span asp-validation-for="PatientId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AvailablityId" class="control-label"></label>
-                <input asp-for="AvailablityId" class="form-control" />
-                <span asp-validation-for="AvailablityId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        <div class="col-md-4">
+            <form asp-action="CreateAppointment" method="post">
+        <!-- Editable Fields -->
+        <div class="form-group">
+            <label asp-for="Description">Description</label>
+            <input asp-for="Description" class="form-control" />
+        </div>
+
+        <!-- Non-Editable Fields -->
+        <div class="form-group" hidden>
+            <input type="text" asp-for="DoctorId" class="form-control" value="@ViewBag.viewModel.DoctorId" contenteditable="false"/>
+        </div>
+        <div class="form-group" hidden>
+            <input type="text" asp-for="AvailablityId" class="form-control" value="@ViewBag.AvailibilityId" contenteditable="false"/>
+        </div>
+        <div class="form-group">
+            <label>Doctor Name</label>
+            <input type="text" class="form-control" value="@ViewBag.viewModel.Doctor.FirstName @ViewBag.viewModel.Doctor.LastName" contenteditable="true" disabled />
+        </div>
+        <div class="form-group">
+            <label>Current Recuring Appointment Number</label>
+            <input type="text" class="form-control" value="@ViewBag.appointmentCount" contenteditable="true" disabled />
+        </div>
+        <div class="form-group" hidden>
+            <input type="text" asp-for="PatientId" class="form-control" value="@ViewBag.loggedUserData.Id" contenteditable="false" />
+        </div>
+
+        <div class="form-group">
+            <label>Patient Name</label>
+            <input type="text" class="form-control" value="@ViewBag.loggedUserData.FirstName @ViewBag.loggedUserData.LastName" contenteditable="true" disabled />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
     </div>
 </div>
 

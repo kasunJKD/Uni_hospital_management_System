@@ -19,19 +19,23 @@ namespace Uni_hospital.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public void CreateAppointment(AppointmentViewModel appointment)
+        public int CreateAppointment(AppointmentViewModel appointment)
         {
             var lastAppointment =  _unitOfWork.GenericRepository<Appointment>().GetOneByList(
-                filter: a => a.AvailablityId == appointment.AvailablityId,
+                filter: a => a.AvailabilityId == appointment.AvailablityId,
                 orderBy: q => q.OrderByDescending(a => a.CreatedDate));
 
             int newAppointmentNumber = 1; // Default value for the first appointment
 
-            if (lastAppointment != null)
+            if (lastAppointment.Result != null)
             {
                 // Parse the last appointment number and increment it by 1
                 var lastNumber = lastAppointment.Result;
                 newAppointmentNumber = lastNumber.Number + 1;
+            }
+            else
+            {
+                newAppointmentNumber = 1;
             }
             var model = new AppointmentViewModel().ConvertViewModelToModel(appointment);
             model.Number = newAppointmentNumber;
@@ -39,6 +43,8 @@ namespace Uni_hospital.Services
             model.UpdatedDate = DateTime.Now;
             _unitOfWork.GenericRepository<Appointment>().Add(model);
             _unitOfWork.Save();
+
+            return model.Id;
         }
 
         public PagedResult<AppointmentViewModel> GetAll(int pageNumber, int pageSize)
@@ -79,9 +85,21 @@ namespace Uni_hospital.Services
 
         public AppointmentViewModel GetAppointmentById(int id)
         {
-            var model = _unitOfWork.GenericRepository<Appointment>().GetById(id);
+            var model = _unitOfWork.GenericRepository<Appointment>().GetByKey(env=>env.Id==id, includeProperties: "Doctor, Patient, Doctor.Speciality, Availability");
             var vm = new AppointmentViewModel(model);
             return vm;
+        }
+
+        public List<AppointmentViewModel> GetAppointmentsByAvailabilityId(int availabilityId)
+        {
+            var appointments = _unitOfWork.GenericRepository<Appointment>()
+                .GetAll(includeProperties: "Availability") // Assuming GetAll() retrieves all appointments
+                .Where(appointment => appointment.Availability.Id == availabilityId)
+                .ToList();
+
+            var usersList = ConvertModelToViewModelList(appointments);
+
+            return usersList;
         }
     }
 }

@@ -40,7 +40,7 @@ namespace Uni_hospital.ViewModels
             SpecialityDescription=app.Doctor.Speciality.Description;
             PatientId= app.Patient.Id;
             DoctorId= app.Doctor.Id;
-            AvailablityId = app.AvailablityId;
+            AvailablityId = app.AvailabilityId;
             
         }
 
@@ -54,7 +54,7 @@ namespace Uni_hospital.ViewModels
                 Description = app.Description,
                 DoctorId=app.DoctorId,
                 PatientId=app.PatientId,
-                AvailablityId=app.AvailablityId,
+                AvailabilityId = app.AvailablityId,
         };
 
         }
