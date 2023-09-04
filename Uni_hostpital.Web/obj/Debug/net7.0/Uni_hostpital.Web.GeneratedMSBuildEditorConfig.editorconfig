@@ -204,6 +204,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Dev/Uni_hospital/Uni_hostpital.Web/Areas/Patient/Views/Appointment/CreateAppointment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUGF0aWVudFxWaWV3c1xBcHBvaW50bWVudFxDcmVhdGVBcHBvaW50bWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Dev/Uni_hospital/Uni_hostpital.Web/Areas/Patient/Views/Appointment/GetAvailabilityInfo.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcUGF0aWVudFxWaWV3c1xBcHBvaW50bWVudFxHZXRBdmFpbGFiaWxpdHlJbmZvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

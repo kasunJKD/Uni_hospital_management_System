@@ -79,9 +79,9 @@ namespace Uni_hospital.Services
                 {
                     searchPredicate = user => user.Doctor.SpecialityId == specialityId;
                 }
-
+                var includeProperties = "Doctor,Doctor.Speciality";
                 var modelList = _unitOfWork.GenericRepository<Availability>()
-                    .GetAll(searchPredicate, includeProperties: "Doctor")
+                    .GetAll(searchPredicate, includeProperties: includeProperties)
                     .ToList();
 
                 groupedUsersList = ConvertModelToViewModelList(modelList);

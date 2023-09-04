@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Uni_hospital.Models;
 using Uni_hospital.Services;
+using Uni_hospital.ViewModels;
 
 namespace Uni_hostpital.Web.Areas.Patient.Controllers
 {
@@ -43,5 +45,45 @@ namespace Uni_hostpital.Web.Areas.Patient.Controllers
 
             return View(availList);
         }
+
+        [HttpGet]
+        public IActionResult CreateAppointment()
+        {
+            var doctors = _applicationUserService.GetAllDoctorListDropDown();
+            var doctorList = doctors.Select(d => new {
+                DoctorId = d.Id,
+                FullName = $"{d.FirstName} {d.LastName}" // Concatenate first name and last name
+            });
+
+            // Get all the enum values as a list of SelectListItem
+            var enumValues = Enum.GetValues(typeof(Status))
+                                 .Cast<Status>()
+                                 .Select(e => new SelectListItem
+                                 {
+                                     Value = e.ToString(), // Convert enum value to string
+                                     Text = e.ToString() // Convert enum value to string
+                                 })
+                                 .ToList();
+            // Get all the enum values as a list of SelectListItem
+            var zoneVals = Enum.GetValues(typeof(Zone))
+                                 .Cast<Zone>()
+                                 .Select(e => new SelectListItem
+                                 {
+                                     Value = e.ToString(), // Convert enum value to string
+                                     Text = e.ToString() // Convert enum value to string
+                                 })
+                                 .ToList();
+            ViewBag.zone = new SelectList(zoneVals, "Value", "Text");
+            ViewBag.status = new SelectList(enumValues, "Value", "Text");
+            ViewBag.doctor = new SelectList(doctorList, "DoctorId", "FullName");
+            return View();
+        }
+
+/*        [HttpPost]
+        public IActionResult CreateAppointment(AvailabilityViewModel vm)
+        {
+            _availablityService.CreateAvailability(vm);
+            return RedirectToAction("Index");
+        }*/
     }
 }

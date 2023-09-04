@@ -19,6 +19,7 @@ namespace Uni_hospital.ViewModels
         public Zone zone { get; set; }
         public Status Status { get; set; }
         public int SpecialityId { get; set; }
+        public string SpecialistName { get; set; }
 
         public AvailabilityViewModel() { }
 
@@ -31,6 +32,7 @@ namespace Uni_hospital.ViewModels
             StartTime = app.StartTime;
             zone = app.zone;
             Status = app.Status;
+            SpecialistName = app.Doctor.Speciality.Name;
         }
 
         public Availability ConvertViewModelToModel(AvailabilityViewModel app)
