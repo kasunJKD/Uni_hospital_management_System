@@ -3,5 +3,31 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Patient</h1>
+<h1>Welcome</h1>
+
+<div class="random-tip-card">
+    <div class="card bg-light">
+        <div class="card-body">
+            <h5 class="card-title">Random Tip</h5>
+            <p class="card-text">@ViewBag.randomTip</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .random-tip-card {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .card {
+        width: 300px; /* Adjust the width as needed */
+        margin: 0 auto;
+    }
+</style>
+
+
+
+
+
 

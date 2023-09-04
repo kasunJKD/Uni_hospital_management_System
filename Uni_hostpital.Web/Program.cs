@@ -25,6 +25,7 @@ builder.Services.AddTransient<IApplicationUserService, ApplicationUserService>()
 builder.Services.AddTransient<IAppointmentService, AppointmentService>();
 builder.Services.AddTransient<IAvailablityService, AvailabilityService>();
 builder.Services.AddTransient<ISpecialityService, SpecialityService>();
+builder.Services.AddTransient<ITipsService, TipsService>();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();

@@ -8,8 +8,7 @@ namespace Uni_hospital.ViewModels
     //admin create patient report
     //get list of patient reports
     //check info in patient reports
-    //create tips
-    //show tips randomly
+
     public class ApplicationUserViewModel
     {
         public List<ApplicationUser> Doctors { get; set; } = new List<ApplicationUser>();
