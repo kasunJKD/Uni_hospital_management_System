@@ -4,6 +4,7 @@ using Uni_hostpital.Web.Models;
 
 namespace Uni_hostpital.Web.Controllers
 {
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -13,10 +14,10 @@ namespace Uni_hostpital.Web.Controllers
             _logger = logger;
         }
 
-/*        public IActionResult Index()
+        public IActionResult Index()
         {
             return View();
-        }*/
+        }
 
         public IActionResult Privacy()
         {

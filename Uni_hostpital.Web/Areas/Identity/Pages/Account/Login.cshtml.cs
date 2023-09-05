@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Uni_hospital.Models;
+using System.Data;
 
 namespace Uni_hostpital.Web.Areas.Identity.Pages.Account
 {
@@ -116,6 +117,23 @@ namespace Uni_hostpital.Web.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    // Check if it's the first day of the month
+                    if (DateTime.Now.Day == 1 && !User.IsInRole("Admin"))
+                    {
+                        // Redirect the user to the feedback form page
+                        return RedirectToAction("Create", "FeedBack", new { area = "Patient" });
+                    }
+                    if (User.IsInRole("Admin"))
+                    {
+                        // Redirect the user to the feedback form page
+                        return RedirectToAction("Index", "Home", new { area = "Admin" });
+                    }
+                    if (User.IsInRole("Patient"))
+                    {
+                        // Redirect the user to the feedback form page
+                        return RedirectToAction("Index", "Home", new { area = "Patient" });
+                    }
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

@@ -1,11 +1,11 @@
 ﻿@using Uni_hospital.Utilities;
-@model PagedResult<Uni_hospital.ViewModels.TipsViewModel>
+@model PagedResult<Uni_hospital.ViewModels.MedicineViewModel>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Medicine Inventory</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -17,13 +17,16 @@
                 Id
             </th>
             <th>
+                Name
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Cost
+            </th>
+            <th>
                 Description
-            </th>
-            <th>
-                CreatedDate
-            </th>
-            <th>
-                UpdatedDate
             </th>
             <th></th>
         </tr>
@@ -35,13 +38,16 @@
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedDate)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

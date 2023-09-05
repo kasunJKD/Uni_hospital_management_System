@@ -16,7 +16,7 @@ builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
@@ -26,6 +26,8 @@ builder.Services.AddTransient<IAppointmentService, AppointmentService>();
 builder.Services.AddTransient<IAvailablityService, AvailabilityService>();
 builder.Services.AddTransient<ISpecialityService, SpecialityService>();
 builder.Services.AddTransient<ITipsService, TipsService>();
+builder.Services.AddTransient<IMedicineService, MedicineService>();
+builder.Services.AddTransient<IFeedBackService, FeedBackService>();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
@@ -41,9 +43,41 @@ app.UseRouting();
 
 app.UseAuthorization();
 app.MapRazorPages();
+
+/*app.MapControllerRoute(
+    name: "default",
+    pattern: "{Area=Admin}/{controller=Home}/{action=Index}/{id?}");*/
+
+app.MapControllerRoute(
+    name: "MyArea",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{Area=Admin}/{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+// Default route for users with the "admin" role
+/*app.MapControllerRoute(
+    name: "Admin",
+    pattern: "{area:exists=Admin}/{controller=Home}/{action=Index}/{id?}",
+    defaults: new { area = "Admin" },
+    constraints: new { area = "Admin", role = "Admin" }
+);
+
+// Default route for users with the "doctor" role
+app.MapControllerRoute(
+    name: "Patient",
+    pattern: "{area:exists=Patient}/{controller=Home}/{action=Index}/{id?}",
+    defaults: new { area = "Patient" },
+    constraints: new { area = "Patient", role = "Patient" }
+);*/
+
+// Default route for other users or unauthenticated users
+/*app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}"
+);*/
+
 
 app.Run();
 

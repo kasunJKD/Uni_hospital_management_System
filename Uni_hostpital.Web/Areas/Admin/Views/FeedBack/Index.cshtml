@@ -1,5 +1,5 @@
 ﻿@using Uni_hospital.Utilities;
-@model PagedResult<Uni_hospital.ViewModels.TipsViewModel>
+@model PagedResult<Uni_hospital.ViewModels.FeedBackViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -20,10 +20,10 @@
                 Description
             </th>
             <th>
-                CreatedDate
+                Rate
             </th>
             <th>
-                UpdatedDate
+                CreatedTime
             </th>
             <th></th>
         </tr>
@@ -38,14 +38,13 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
+                @Html.DisplayFor(modelItem => item.Rate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UpdatedDate)
+                @Html.DisplayFor(modelItem => item.CreatedTime)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                    @Html.ActionLink("Info", "Info", new { id=item.Id })
             </td>
         </tr>
 }
