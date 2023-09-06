@@ -28,7 +28,6 @@ namespace Uni_hospital.Models
         [NotMapped]
         public ICollection<PatientReport>? PatientReports { get; set; }
         public ICollection<Availability>? Availabilities { get; set; }
-        public ICollection<Feedback>? Feedbacks { get; set; }
     }
 }
 

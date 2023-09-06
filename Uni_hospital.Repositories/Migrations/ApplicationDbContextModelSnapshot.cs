@@ -335,13 +335,7 @@ namespace Uni_hospital.Repositories.Migrations
                     b.Property<int>("Rate")
                         .HasColumnType("integer");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Feedbacks");
                 });
@@ -605,17 +599,6 @@ namespace Uni_hospital.Repositories.Migrations
                     b.Navigation("Doctor");
                 });
 
-            modelBuilder.Entity("Uni_hospital.Models.Feedback", b =>
-                {
-                    b.HasOne("Uni_hospital.Models.ApplicationUser", "User")
-                        .WithMany("Feedbacks")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Uni_hospital.Models.LabResults", b =>
                 {
                     b.HasOne("Uni_hospital.Models.PatientReport", "PatientReport")
@@ -668,8 +651,6 @@ namespace Uni_hospital.Repositories.Migrations
             modelBuilder.Entity("Uni_hospital.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Availabilities");
-
-                    b.Navigation("Feedbacks");
                 });
 
             modelBuilder.Entity("Uni_hospital.Models.Availability", b =>

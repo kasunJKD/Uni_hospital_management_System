@@ -108,7 +108,7 @@ namespace Uni_hospital.Services
             {
                 int ExcludeRecords = (PageSize * PageNumber) - PageSize;
 
-                var modelList = _unitOfWork.GenericRepository<ApplicationUser>().GetAll(x => x.IsDoctor == false && x.UserName != "Admin", includeProperties: "Speciality")
+                var modelList = _unitOfWork.GenericRepository<ApplicationUser>().GetAll(x => x.IsDoctor == false && x.Email != "Admin@gmail.com", includeProperties: "Speciality")
                     .Skip(ExcludeRecords).Take(PageSize).ToList();
 
                 totalCount = _unitOfWork.GenericRepository<ApplicationUser>().GetAll(x => x.IsDoctor == false).ToList().Count();

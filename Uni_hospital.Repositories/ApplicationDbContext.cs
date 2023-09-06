@@ -42,10 +42,6 @@ namespace Uni_hospital.Repositories
                    .HasOne(p => p.Doctor)
                    .WithMany(u => u.Availabilities)
                    .HasForeignKey(p => p.DoctorId);
-            modelBuilder.Entity<Feedback>()
-                   .HasOne(p => p.User)
-                   .WithMany(u => u.Feedbacks)
-                   .HasForeignKey(p => p.UserId);
 
 
         }

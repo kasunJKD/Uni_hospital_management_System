@@ -41,6 +41,11 @@ namespace Uni_hospital.Utilities
                 new Speciality { Id=10, Name = "Breast and Cancer Surgeon",Description= "Breast and Cancer Surgeon" },
             };
 
+            var TipsSeed = new Tips[]
+            {
+                new Tips { Id=1, Description="Make sure to wash your hands", CreatedDate=DateTime.Now, UpdatedDate=DateTime.Now },
+            };
+
 
             try
             {
@@ -63,7 +68,7 @@ namespace Uni_hospital.Utilities
                 _userManager.CreateAsync(new ApplicationUser
                 {
                     Email = "Admin@gmail.com",
-                    UserName = "Admin",
+                    UserName = "Admin@gmail.com",
                     SpecialityId = null,
                 }, "Mate1234!").GetAwaiter().GetResult();
                 var Appuser = _context.Users.FirstOrDefault(x => x.Email == "Admin@gmail.com");
@@ -81,6 +86,12 @@ namespace Uni_hospital.Utilities
             if (!_context.Speciality.Any())
             {
                 _context.Speciality.AddRange(SpecialitySeed);
+                _context.SaveChanges();
+            }
+
+            if (!_context.Tips.Any())
+            {
+                _context.Tips.AddRange(TipsSeed);
                 _context.SaveChanges();
             }
             // Create Identity users
