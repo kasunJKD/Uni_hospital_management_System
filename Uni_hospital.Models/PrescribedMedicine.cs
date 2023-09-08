@@ -9,8 +9,8 @@ namespace Uni_hospital.Models
     public class PrescribedMedicine
     {
         public int Id { get; set; }
-        public Medicine Medicine { get; set; }
-        public PatientReport PatientReport { get; set; }
+        public Medicine? Medicine { get; set; }
+        public PatientReport? PatientReport { get; set; }
         public MedicineIntakeZone MedicineIntakeZone { get; set; }
         public int DurationDays { get; set; }
     }

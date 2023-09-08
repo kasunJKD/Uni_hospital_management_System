@@ -28,6 +28,8 @@ builder.Services.AddTransient<ISpecialityService, SpecialityService>();
 builder.Services.AddTransient<ITipsService, TipsService>();
 builder.Services.AddTransient<IMedicineService, MedicineService>();
 builder.Services.AddTransient<IFeedBackService, FeedBackService>();
+builder.Services.AddTransient<IPrescribedMedicineService, PrescribedMedicineService>();
+builder.Services.AddTransient<IPatientReportService, PatientReportService>();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
