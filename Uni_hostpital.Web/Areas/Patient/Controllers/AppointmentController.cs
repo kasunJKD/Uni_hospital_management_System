@@ -23,12 +23,16 @@ namespace Uni_hostpital.Web.Areas.Patient.Controllers
         private IApplicationUserService _applicationUserService;
         private IAppointmentService _appointmentService;
 
-        public AppointmentController(IAvailablityService availabilityService, ISpecialityService specialityService, IApplicationUserService applicationUserService, IAppointmentService appointmentService)
+        //create patient report when creating appointment
+        private IPatientReportService _patientReportService;
+
+        public AppointmentController(IAvailablityService availabilityService, ISpecialityService specialityService, IApplicationUserService applicationUserService, IAppointmentService appointmentService, IPatientReportService patientReportService)
         {
             _availabilityService = availabilityService;
             _specialityService = specialityService;
             _applicationUserService = applicationUserService;
             _appointmentService = appointmentService;
+            _patientReportService = patientReportService;
 
         }
         public IActionResult Index()
@@ -79,6 +83,13 @@ namespace Uni_hostpital.Web.Areas.Patient.Controllers
         public IActionResult CreateAppointment(AppointmentViewModel vm)
         {
             int id = _appointmentService.CreateAppointment(vm);
+            PatientReportViewModel viewModel= new PatientReportViewModel();
+            viewModel.Id = id;
+            viewModel.PatientId = vm.PatientId;
+            viewModel.DoctorId = vm.DoctorId;
+            viewModel.CreatedDate = DateTime.Now;
+            viewModel.UpdatedDate = DateTime.Now;
+            _patientReportService.CreatePatientReport(viewModel);
             // Store appointmentId in TempData
             TempData["CreatedAppointmentId"] = id;
             return RedirectToAction("GetCreatedAppointmentInfo");
