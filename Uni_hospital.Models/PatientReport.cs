@@ -12,7 +12,6 @@ namespace Uni_hospital.Models
         public string? Diagnose { get; set; }
         public string? DoctorId { get; set; }
         public ApplicationUser? Doctor { get; set; }
-
         public string? PatientId { get; set; }
         public ApplicationUser? Patient { get; set; }
         public ICollection<PrescribedMedicine>? PrescribedMedicines { get;set; }

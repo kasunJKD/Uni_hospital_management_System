@@ -377,15 +377,12 @@ namespace Uni_hospital.Repositories.Migrations
                         .HasColumnType("numeric");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Type")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -405,15 +402,12 @@ namespace Uni_hospital.Repositories.Migrations
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Diagnose")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("DoctorId")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("PatientId")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("UpdatedDate")
@@ -439,13 +433,13 @@ namespace Uni_hospital.Repositories.Migrations
                     b.Property<int>("DurationDays")
                         .HasColumnType("integer");
 
-                    b.Property<int>("MedicineId")
+                    b.Property<int?>("MedicineId")
                         .HasColumnType("integer");
 
                     b.Property<int>("MedicineIntakeZone")
                         .HasColumnType("integer");
 
-                    b.Property<int>("PatientReportId")
+                    b.Property<int?>("PatientReportId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -614,15 +608,11 @@ namespace Uni_hospital.Repositories.Migrations
                 {
                     b.HasOne("Uni_hospital.Models.ApplicationUser", "Doctor")
                         .WithMany()
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DoctorId");
 
                     b.HasOne("Uni_hospital.Models.ApplicationUser", "Patient")
                         .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PatientId");
 
                     b.Navigation("Doctor");
 
@@ -633,15 +623,11 @@ namespace Uni_hospital.Repositories.Migrations
                 {
                     b.HasOne("Uni_hospital.Models.Medicine", "Medicine")
                         .WithMany("PrescribedMedicine")
-                        .HasForeignKey("MedicineId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MedicineId");
 
                     b.HasOne("Uni_hospital.Models.PatientReport", "PatientReport")
                         .WithMany("PrescribedMedicines")
-                        .HasForeignKey("PatientReportId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PatientReportId");
 
                     b.Navigation("Medicine");
 

@@ -31,6 +31,7 @@ namespace Uni_hospital.ViewModels
             Patient = app.Patient;
             CreatedDate = app.CreatedDate;
             UpdatedDate = app.UpdatedDate;
+            Doctor= app.Doctor;
             
         }
 
@@ -45,6 +46,7 @@ namespace Uni_hospital.ViewModels
                 Patient = app.Patient,
                 CreatedDate = app.CreatedDate,
                 UpdatedDate = app.UpdatedDate,
+                Doctor= app.Doctor,
         };
         }
     }
