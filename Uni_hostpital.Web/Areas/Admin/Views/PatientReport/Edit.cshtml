@@ -49,6 +49,69 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("AddMeds", "AddMeds", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="Index">Back to List</a>
+</div>
+
+<div>
+    <h4>Prescribed Medications</h4>
+    <hr />
+
+    @if (ViewBag.presmeds != null && ViewBag.presmeds.Count > 0)
+    {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Medication Name</th>
+                        <th>Dosage</th>
+                        <th>Frequency</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var medication in ViewBag.presmeds)
+                {
+                            <tr>
+                                        <td>@medication.MedicineId</td>
+                                                <td>@medication.Medicine.Name</td>
+                                        <td>@medication.MedicineIntakeZone</td>
+                                                        <td>@medication.DurationDays</td>
+                            </tr>
+
+                                        
+            
+                }
+                </tbody>
+            </table>
+    }
+    else
+    {
+            <p>No prescribed medications found.</p>
+    }
+
+    <h4>Add Prescribed Medication</h4>
+     <hr />
+
+    <form method="post" asp-action="AddMeds">
+         <div class="form-group" hidden>
+            <input type="text" class="form-control" id="PatientReportId" name="PatientReportId" value=@Model.Id>
+        </div>
+        <select id="medicineName" name="medicineName" class="form-control">
+        <option value="">Select a Medicine</option>
+            @foreach (var item in ViewBag.doctorList)
+            {
+                <option value="@item.Value">@item.Text</option>
+            }
+    </select>
+        <div class="form-group">
+            <label for="Name">Duration Days</label>
+            <input type="number" class="form-control" id="DurationDays" name="DurationDays" required>
+        </div>
+        <select id="medicineIntakeZone" name="medicineIntakeZone" class="form-control">
+        <option value="">Select Medicine Intake Zone:</option>
+            @foreach (var item in ViewBag.enumValues)
+            {
+                    <option value="@item.Value">@item.Text</option>
+            }
+    </select>
+        <button type="submit" class="btn btn-primary">Add Medication</button>
+    </form>
 </div>

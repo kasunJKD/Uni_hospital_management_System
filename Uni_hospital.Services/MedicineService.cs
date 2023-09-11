@@ -36,7 +36,7 @@ namespace Uni_hospital.Services
             {
                 int ExcludeRecords = (pageSize * pageNumber) - pageSize;
 
-                var modelList = _unitOfWork.GenericRepository<Medicine>().GetAll(includeProperties: "Doctor.Speciality")
+                var modelList = _unitOfWork.GenericRepository<Medicine>().GetAll()
                     .Skip(ExcludeRecords).Take(pageSize).ToList();
 
                 totalCount = _unitOfWork.GenericRepository<Medicine>().GetAll().ToList().Count();

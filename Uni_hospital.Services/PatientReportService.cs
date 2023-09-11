@@ -88,5 +88,36 @@ namespace Uni_hospital.Services
             _unitOfWork.GenericRepository<PatientReport>().Delete(model);
             _unitOfWork.Save();
         }
+
+        public PagedResult<PatientReportViewModel> GetAllReportsByPatientId(int pageNumber, int pageSize, string patientId)
+        {
+            var AppointmentViewModel = new PatientReportViewModel();
+            int totalCount;
+            List<PatientReportViewModel> usersList = new List<PatientReportViewModel>();
+            try
+            {
+                int ExcludeRecords = (pageSize * pageNumber) - pageSize;
+
+                var modelList = _unitOfWork.GenericRepository<PatientReport>().GetAll(includeProperties: "Doctor,Patient", filter:ava => ava.PatientId == patientId)
+                    .Skip(ExcludeRecords).Take(pageSize).ToList();
+
+                totalCount = _unitOfWork.GenericRepository<PatientReport>().GetAll().ToList().Count();
+
+                usersList = ConvertModelToViewModelList(modelList);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            var result = new PagedResult<PatientReportViewModel>
+            {
+                Data = usersList,
+                TotalItems = totalCount,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+
+            return result;
+        }
     }
 }

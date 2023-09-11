@@ -50,6 +50,9 @@
                                 <li class="nav-item">
                                         <a class="nav-link text-dark" asp-area="Admin" asp-controller="PatientReport" asp-action="Index">Patient Reports</a>
                                 </li>
+                                    <li class="nav-item">
+                                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Medicine" asp-action="Index">Medicine</a>
+                                    </li>
                         }
                         @if (User.IsInRole("Patient"))
                         {
@@ -62,6 +65,9 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="Patient" asp-controller="Appointment" asp-action="Index">Appointment</a>
                             </li>
+                            <li class="nav-item">
+                                            <a class="nav-link text-dark" asp-area="Patient" asp-controller="PatientReport" asp-action="Index">Reports</a>
+                             </li>
                         }
                     </ul>
                     <partial name="_LoginPartial"/>

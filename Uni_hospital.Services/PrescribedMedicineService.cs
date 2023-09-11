@@ -63,7 +63,7 @@ namespace Uni_hospital.Services
             try
             {
 
-                var includeProperties = "Medicine, PatientReport";
+                var includeProperties = "Medicine,PatientReport";
                 var modelList = _unitOfWork.GenericRepository<PrescribedMedicine>()
                     .GetAll(filter:ava => ava.PatientReport.Id == reportId, includeProperties: includeProperties)
                     .ToList();

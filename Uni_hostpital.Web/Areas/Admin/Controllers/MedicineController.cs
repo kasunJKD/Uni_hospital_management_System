@@ -4,6 +4,7 @@ using Uni_hospital.ViewModels;
 
 namespace Uni_hostpital.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class MedicineController : Controller
     {
         private IMedicineService _itipsservice;

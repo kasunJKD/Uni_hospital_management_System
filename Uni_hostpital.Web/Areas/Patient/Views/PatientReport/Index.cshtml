@@ -1,0 +1,63 @@
+﻿@using Uni_hospital.Utilities;
+@model PagedResult<Uni_hospital.ViewModels.PatientReportViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Reports</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Diagnose
+            </th>
+            <th>
+                DoctorId
+            </th>
+            <th>
+                PatientId
+            </th>
+            <th>
+                CreatedDate
+            </th>
+            <th>
+                UpdatedDate
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Data) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Diagnose)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

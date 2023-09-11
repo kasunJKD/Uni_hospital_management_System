@@ -16,5 +16,6 @@ namespace Uni_hospital.Services
         void CreatePatientReport(PatientReportViewModel availability);
         void UpdatePatientReport(PatientReportViewModel availability);
         void Delete(int id);
+        PagedResult<PatientReportViewModel> GetAllReportsByPatientId(int pageNumber, int pageSize, string patientId);
     }
 }
