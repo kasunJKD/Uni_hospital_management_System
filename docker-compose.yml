@@ -12,3 +12,11 @@ services:
       - POSTGRES_DB=hospitaldb
     # volumes:
     #   - ./SeWa.Token.Service/Database/initial_table_create_init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+    - 5000:80
+    depends_on:
+    - hospital-db
