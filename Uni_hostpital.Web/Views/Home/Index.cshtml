@@ -5,3 +5,22 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
 </div>
+<div class="random-tip-card">
+    <div class="card bg-light">
+        <div class="card-body">
+            <h5 class="card-title">Tip</h5>
+            <p class="card-text">@ViewBag.randomTip.Description</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .random-tip-card {
+        margin-top: 400px;
+        text-align: center;
+    }
+
+    .card {
+        margin: 0 auto;
+    }
+</style>

@@ -44,6 +44,22 @@ namespace Uni_hospital.Utilities
             var TipsSeed = new Tips[]
             {
                 new Tips { Id=1, Description="Make sure to wash your hands", CreatedDate=DateTime.Now, UpdatedDate=DateTime.Now },
+                new Tips { Id=2, Description="Contact reception for more details about doctors", CreatedDate=DateTime.Now, UpdatedDate=DateTime.Now },
+            };
+
+            var MedsSeed = new Medicine[]
+            {
+                new Medicine { Id=1, Description="potent tranquilizer of moderate duration within the triazolobenzodiazepine", Name="Amoxicillin ", Type="aminopenicillin", Cost=12,  },
+                 new Medicine { Id=2, Description="treat bacterial infections", Name="Alprazolam", Type="Xanax", Cost=10,  },
+                  new Medicine { Id=3, Description="calcium channel blocker medication", Name="Amlodipine", Type="Norvasc", Cost=12,  },
+                   new Medicine { Id=4, Description="used to treat epilepsy", Name="Pregabalin", Type="Lyrica", Cost=29,  },
+                    new Medicine { Id=5, Description="used to treat fluid build-up due to heart failure", Name="Spironolactone", Type="Aldactone", Cost=32,  },
+                     new Medicine { Id=6, Description="COX-2 inhibitor and nonsteroidal anti-inflammatory drug", Name="Celecoxib", Type="Celebrex", Cost=30,  },
+                      new Medicine { Id=7, Description="antibiotic that can treat a number of bacterial infections", Name="Cefalexin", Type="cephalexin", Cost=12,  },
+                       new Medicine { Id=8, Description="is a medication used in the treatment of gastroesophageal reflux disease", Name="Omeprazole", Type="Prilosec", Cost=12,  },
+                        new Medicine { Id=9, Description="is an antidepressant of the selective serotonin reuptake inhibitor class.", Name="Escitalopram", Type="Lexapro", Cost=12,  },
+                         new Medicine { Id=10, Description="treat major depressive disorder, generalized anxiety disorder", Name="Duloxetine", Type="Cymbalta", Cost=12,  },
+                          new Medicine { Id=11, Description=" nonsteroidal anti-inflammatory drug that is used to relieve pain, fever, and inflammation. This includes painful menstrual periods", Name="Ibuprofen", Type="Ibuprofen", Cost=12,  },
             };
 
 
@@ -94,14 +110,19 @@ namespace Uni_hospital.Utilities
                 _context.Tips.AddRange(TipsSeed);
                 _context.SaveChanges();
             }
+            if (!_context.Medicine.Any())
+            {
+                _context.Medicine.AddRange(MedsSeed);
+                _context.SaveChanges();
+            }
             // Create Identity users
             var user1 = new ApplicationUser
             {
                 Email = "Doctor1@gmail.com",
-                UserName = "Doctor1",
-                FirstName = "Doctor1",
-                LastName = "Doctor1LastName",
-                SpecialityId = 2,
+                UserName = "Wasantha",
+                FirstName = "Sarath",
+                LastName = "Gunathilake",
+                SpecialityId = 4,
                 IsDoctor=true,
             };
 
@@ -112,9 +133,9 @@ namespace Uni_hospital.Utilities
             var user2 = new ApplicationUser
             {
                 Email = "Doctor2@gmail.com",
-                UserName = "Doctor2",
-                FirstName = "Doctor2",
-                LastName = "Doctor2LastName",
+                UserName = "Wasantha",
+                FirstName = "Wasantha",
+                LastName = "Rathnayake",
                 SpecialityId = 3,
                 IsDoctor = true,
             };
@@ -126,14 +147,154 @@ namespace Uni_hospital.Utilities
             var user3 = new ApplicationUser
             {
                 Email = "Patient1@gmail.com",
-                UserName = "Patient1",
-                FirstName = "Patient1",
-                LastName = "PLastName1",
+                UserName = "Patient1@gmail.com",
+                FirstName = "Kanthi",
+                LastName = "Perera",
                 IsDoctor = false,
-                SpecialityId = 1,
+                SpecialityId = 2,
             };
 
             _userManager.CreateAsync(user3, "Mate1234!").GetAwaiter().GetResult();
+
+            // Create Identity patient
+            var user4 = new ApplicationUser
+            {
+                Email = "Mahendra@gmail.com",
+                UserName = "Mahendra@gmail.com",
+                FirstName = "Mahendra",
+                LastName = "Perera",
+                IsDoctor = true,
+                SpecialityId = 6,
+            };
+
+            _userManager.CreateAsync(user4, "Mate1234!").GetAwaiter().GetResult();
+
+            // Create Identity patient
+            var user5 = new ApplicationUser
+            {
+                Email = "Priyantha@gmail.com",
+                UserName = "Priyantha",
+                FirstName = "Priyantha",
+                LastName = "Madawala",
+                IsDoctor = true,
+                SpecialityId = 2,
+            };
+
+            _userManager.CreateAsync(user5, "Mate1234!").GetAwaiter().GetResult();
+
+
+            // Create Identity patient
+            var user6 = new ApplicationUser
+            {
+                Email = "Jayatilake@gmail.com",
+                UserName = "Jayatilake",
+                FirstName = "R.S",
+                LastName = "Jayatilake",
+                IsDoctor = true,
+                SpecialityId = 2,
+            };
+
+            _userManager.CreateAsync(user6, "Mate1234!").GetAwaiter().GetResult();
+
+
+
+            // Create Identity patient
+            var user7 = new ApplicationUser
+            {
+                Email = "Jayasekara@gmail.com",
+                UserName = "Jayasekara",
+                FirstName = "Panduka",
+                LastName = "Jayasekara",
+                IsDoctor = true,
+                SpecialityId = 2,
+            };
+
+            _userManager.CreateAsync(user7, "Mate1234!").GetAwaiter().GetResult();
+
+
+
+            // Create Identity patient
+            var user8 = new ApplicationUser
+            {
+                Email = "Gunasekara@gmail.com",
+                UserName = "Gunasekara",
+                FirstName = "Dehan",
+                LastName = "Gunasekara",
+                IsDoctor = true,
+                SpecialityId = 5,
+            };
+
+            _userManager.CreateAsync(user8, "Mate1234!").GetAwaiter().GetResult();
+
+
+            // Create Identity patient
+            var user9 = new ApplicationUser
+            {
+                Email = "Goonatillake@gmail.com",
+                UserName = "Goonatillake",
+                FirstName = "Shama",
+                LastName = "Goonatillake",
+                IsDoctor = true,
+                SpecialityId = 2,
+            };
+
+            _userManager.CreateAsync(user9, "Mate1234!").GetAwaiter().GetResult();
+
+
+            // Create Identity patient
+            var user10 = new ApplicationUser
+            {
+                Email = "Patient1@gmail.com",
+                UserName = "Patient1@gmail.com",
+                FirstName = "Kanthi",
+                LastName = "Perera",
+                IsDoctor = true,
+                SpecialityId = 2,
+            };
+
+            _userManager.CreateAsync(user10, "Mate1234!").GetAwaiter().GetResult();
+
+
+            // Create Identity patient
+            var user11 = new ApplicationUser
+            {
+                Email = "Ekanayake@gmail.com",
+                UserName = "Upul",
+                FirstName = "Upul",
+                LastName = "Ekanayake",
+                IsDoctor = true,
+                SpecialityId = 7,
+            };
+
+            _userManager.CreateAsync(user11, "Mate1234!").GetAwaiter().GetResult();
+
+
+            // Create Identity patient
+            var user12 = new ApplicationUser
+            {
+                Email = "Ariyarathna@gmail.com",
+                UserName = "Ariyarathna",
+                FirstName = "Yasantha",
+                LastName = "Ariyarathna",
+                IsDoctor = false,
+                SpecialityId = 4,
+            };
+
+            _userManager.CreateAsync(user12, "Mate1234!").GetAwaiter().GetResult();
+
+
+            // Create Identity patient
+            var user13 = new ApplicationUser
+            {
+                Email = "Abeysinghe@gmail.com",
+                UserName = "Prasad",
+                FirstName = "Prasad",
+                LastName = "Abeysinghe",
+                IsDoctor = false,
+                SpecialityId = 3,
+            };
+
+            _userManager.CreateAsync(user13, "Mate1234!").GetAwaiter().GetResult();
 
 
             //debug lines

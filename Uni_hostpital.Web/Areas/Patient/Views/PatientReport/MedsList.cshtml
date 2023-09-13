@@ -1,0 +1,55 @@
+﻿@model List<Uni_hospital.ViewModels.PrescribedMedicineViewModel>
+
+@{
+    ViewData["Title"] = "MedsList";
+}
+
+
+
+@if (Model.Count > 0)
+{
+    <h1>Prescribed medicine list</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Medicine Name
+            </th>
+            <th>
+                    PatientReportId
+            </th>
+            <th>
+                    Medicine Intake Zone
+            </th>
+            <th>
+                    Duration Days
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medicine.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientReportId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicineIntakeZone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DurationDays)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+}
+
+@if (Model.Count <= 0)
+{
+    <h4>No Medicines have prescribed for this report</h4>
+}

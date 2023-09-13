@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
+using Uni_hospital.Models;
 using Uni_hospital.Services;
 
 namespace Uni_hostpital.Web.Areas.Patient.Controllers
@@ -26,6 +28,13 @@ namespace Uni_hostpital.Web.Areas.Patient.Controllers
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var userData = _applicationUserService.GetUsertById(userId);
             return View(_patientReportService.GetAllReportsByPatientId(pageNumber, pageSize,  userData.Id));
+        }
+
+        [HttpGet]
+        public IActionResult MedsList(int id)
+        {
+            var presmeds = _prescribedMedicineService.GetAllPrescribedMedicineByReportId(id);
+            return View(presmeds);
         }
     }
 }

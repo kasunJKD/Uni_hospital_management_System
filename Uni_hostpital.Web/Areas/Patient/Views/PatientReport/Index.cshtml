@@ -6,7 +6,8 @@
 }
 
 <h1>Reports</h1>
-
+@if (Model.Data.Count > 0)
+{ 
 <table class="table">
     <thead>
         <tr>
@@ -32,7 +33,9 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Data) {
+ 
+       
+        @foreach (var item in Model.Data) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Id)
@@ -53,11 +56,15 @@
                 @Html.DisplayFor(modelItem => item.UpdatedDate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("MedsList", "MedsList", new { id=item.Id }) |
             </td>
         </tr>
 }
     </tbody>
 </table>
+        }
+
+@if (Model.Data.Count <= 0)
+{
+    <p>No Reports found</p>
+}
